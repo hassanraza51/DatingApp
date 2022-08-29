@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
     ],
-  },
+  },      
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
 

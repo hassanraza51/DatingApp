@@ -1,6 +1,5 @@
 ﻿using API.Entities;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -15,7 +14,7 @@ namespace API.Data
                 return;
 
             var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
-            var users= JsonConvert.DeserializeObject<List<AppUser>>(userData);
+            var users= JsonSerializer.Deserialize<List<AppUser>>(userData);
             foreach(var user in users)
             {
                 using var hmac = new HMACSHA512();
@@ -26,7 +25,6 @@ namespace API.Data
 
                 context.Users.Add(user);
             }
-
             await context.SaveChangesAsync();
         }
     }

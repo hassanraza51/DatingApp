@@ -28,9 +28,18 @@
         >
       </li>
     </ul>
-    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-      <img src="{{user.photoUrl}}" alt="{{user.username}}" class="img-fluid rounded-circle">
-      <a class="dropdown-toggle text-light ms-2" dropdownToggle>{{user.username| titlecase}}</a>
+    <div
+      class="dropdown"
+      *ngIf="accountService.currentUser$ | async as user"
+      dropdown
+    >
+      <img
+        src="{{ user.photoUrl || './assets/user.png' }}"
+        class="img-fluid rounded-circle"
+      />
+      <a class="dropdown-toggle text-light ms-2" style="text-decoration: none;" dropdownToggle>{{
+        user.username | titlecase
+      }}</a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
         <div class="dropdown-divider"></div>
